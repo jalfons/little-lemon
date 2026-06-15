@@ -1,70 +1,109 @@
-# Getting Started with Create React App
+# Little Lemon Restaurant Booking App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is the Front-End Developer Capstone project for the Little Lemon restaurant.
 
-## Available Scripts
+The app allows users to view the restaurant homepage and reserve a table through a functional booking form.
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+- Responsive Little Lemon homepage
+- Semantic HTML structure
+- Accessible navigation and form labels
+- Table booking page
+- Available booking times loaded from the provided API
+- Controlled booking form built with React state
+- Client-side validation using HTML5 and React
+- Booking confirmation page
+- Unit tests for booking logic, validation, and form behavior
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Technologies Used
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- React
+- React Router
+- JavaScript
+- HTML5
+- CSS3
+- Jest
+- React Testing Library
+- Git and GitHub
 
-### `npm test`
+## Project Structure
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+src/
+  assets/
+  components/
+    BookingForm.js
+    BookingSlot.js
+    BookingSlots.js
+    CallToAction.js
+    Chicago.js
+    CustomersSay.js
+    Footer.js
+    Header.js
+    Main.js
+    Nav.js
+    Specials.js
+  pages/
+    AboutPage.js
+    BookingPage.js
+    ConfirmedBooking.js
+    HomePage.js
+    LoginPage.js
+    MenuPage.js
+    OrderOnlinePage.js
+  utils/
+    bookingTimes.js
+    bookingValidation.js
 
-### `npm run build`
+## How to Run the Project
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Clone the repository:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+git clone git@github.com:jalfons/little-lemon.git
+cd little-lemon
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Install dependencies:
 
-### `npm run eject`
+npm install
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Run the app:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+npm start
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Open the app in the browser:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+http://localhost:3000
 
-## Learn More
+## How to Run Tests
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+npm test -- --watchAll=false
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## How to Build the Project
 
-### Code Splitting
+npm run build
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Booking Form Validation
 
-### Analyzing the Bundle Size
+The booking form validates:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- Date is required and cannot be in the past
+- Time must be one of the available booking slots
+- Number of guests must be between 1 and 10
+- Occasion must be selected
+- Submit button is disabled until the form is valid
 
-### Making a Progressive Web App
+## Accessibility
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+The app includes:
 
-### Advanced Configuration
+- Semantic HTML elements
+- Navigation landmarks
+- Form labels connected with htmlFor and id
+- ARIA attributes for form validation
+- Keyboard focus styles
+- Skip link to main content
+- Accessible confirmation page
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Repository
 
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+https://github.com/jalfons/little-lemon
