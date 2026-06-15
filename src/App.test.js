@@ -119,25 +119,28 @@ describe('BookingSlots', () => {
   });
 });
 
-describe('booking time reducer functions', () => {
-  test('initializeTimes returns the initial available times', () => {
-    expect(initializeTimes()).toEqual([
-      '17:00',
-      '18:00',
-      '19:00',
-      '20:00',
-      '21:00',
-      '22:00',
-    ]);
+describe('booking time reducer functions with API', () => {
+  test('initializeTimes returns available times from fetchAPI', () => {
+    window.fetchAPI = jest.fn(() => ['17:30', '18:30']);
+
+    expect(initializeTimes()).toEqual(['17:30', '18:30']);
+    expect(window.fetchAPI).toHaveBeenCalledWith(expect.any(Date));
+
+    delete window.fetchAPI;
   });
 
-  test('updateTimes returns initial times when the date changes', () => {
+  test('updateTimes returns API times when the date changes', () => {
+    window.fetchAPI = jest.fn(() => ['19:00', '20:00']);
+
     const result = updateTimes(['17:00'], {
       type: 'date_changed',
       payload: '2026-06-20',
     });
 
-    expect(result).toEqual(initializeTimes());
+    expect(result).toEqual(['19:00', '20:00']);
+    expect(window.fetchAPI).toHaveBeenCalledWith(expect.any(Date));
+
+    delete window.fetchAPI;
   });
 
   test('updateTimes removes the reserved time after submit', () => {
