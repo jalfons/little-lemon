@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import logo from '../assets/little-lemon-logo.svg';
 import Nav from './Nav';
 
@@ -5,9 +6,9 @@ function Header() {
   return (
     <header className="site-header">
       <div className="container header-layout">
-        <a href="#home" className="logo-link" aria-label="Little Lemon home">
-          <img src={logo} alt="Little Lemon logo" className="site-logo" />
-        </a>
+        <Link to="/" className="logo-link" aria-label="Little Lemon homepage">
+          <img src={logo} alt="Little Lemon restaurant logo" className="site-logo" />
+        </Link>
         <Nav />
       </div>
     </header>

@@ -38,7 +38,7 @@ function Main() {
   }
 
   return (
-    <main>
+    <main id="main-content">
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />

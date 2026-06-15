@@ -641,3 +641,32 @@ address {
   transform: none;
   box-shadow: none;
 }
+
+.skip-link {
+  position: absolute;
+  left: 16px;
+  top: -48px;
+  z-index: 100;
+  background-color: var(--color-primary-yellow);
+  color: var(--color-highlight-dark);
+  padding: 12px 16px;
+  border-radius: var(--border-radius-sm);
+  font-weight: 800;
+}
+
+.skip-link:focus {
+  top: 16px;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 4px solid var(--color-primary-yellow);
+  outline-offset: 4px;
+}
+
+.nav-list a.active {
+  color: var(--color-primary-green);
+  text-decoration: underline;
+}

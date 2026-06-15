@@ -11,12 +11,20 @@ function CallToAction() {
             We are a family-owned Mediterranean restaurant focused on traditional
             recipes served with a modern twist.
           </p>
-          <Link to="/booking" className="primary-button">
+          <Link
+            to="/booking"
+            className="primary-button"
+            aria-label="Reserve a table at Little Lemon"
+          >
             Reserve a Table
           </Link>
         </div>
 
-        <div className="image-placeholder" aria-label="Restaurant food image placeholder">
+        <div
+          className="image-placeholder"
+          role="img"
+          aria-label="Placeholder for Little Lemon restaurant food"
+        >
           Restaurant Image
         </div>
       </div>

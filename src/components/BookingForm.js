@@ -78,7 +78,11 @@ function BookingForm({
   }
 
   return (
-    <form className="booking-form" onSubmit={handleSubmit}>
+    <form
+      className="booking-form"
+      onSubmit={handleSubmit}
+      aria-label="Table reservation form"
+    >
       <label htmlFor="res-date">Choose date</label>
       <input
         type="date"
@@ -87,10 +91,11 @@ function BookingForm({
         min={today}
         onChange={handleDateChange}
         aria-describedby="date-error"
+        aria-invalid={!validation.date}
         required
       />
       {!validation.date && (wasSubmitted || date !== '') && (
-        <p className="form-error" id="date-error">
+        <p className="form-error" id="date-error" role="alert" aria-live="polite">
           Please choose today or a future date.
         </p>
       )}
@@ -101,6 +106,7 @@ function BookingForm({
         value={time}
         onChange={(event) => setTime(event.target.value)}
         aria-describedby="time-error"
+        aria-invalid={!validation.time}
         required
       >
         {availableTimes.map((availableTime) => (
@@ -110,7 +116,7 @@ function BookingForm({
         ))}
       </select>
       {!validation.time && wasSubmitted && (
-        <p className="form-error" id="time-error">
+        <p className="form-error" id="time-error" role="alert" aria-live="polite">
           Please choose an available reservation time.
         </p>
       )}
@@ -125,10 +131,11 @@ function BookingForm({
         value={guests}
         onChange={(event) => setGuests(event.target.value)}
         aria-describedby="guests-error"
+        aria-invalid={!validation.guests}
         required
       />
       {!validation.guests && (wasSubmitted || guests !== '') && (
-        <p className="form-error" id="guests-error">
+        <p className="form-error" id="guests-error" role="alert" aria-live="polite">
           Please choose between 1 and 10 guests.
         </p>
       )}
@@ -138,6 +145,7 @@ function BookingForm({
         id="occasion"
         value={occasion}
         onChange={(event) => setOccasion(event.target.value)}
+        aria-invalid={!validation.occasion}
         required
       >
         {occasions.map((occasionOption) => (
