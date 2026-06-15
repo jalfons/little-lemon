@@ -1,7 +1,7 @@
 import BookingForm from '../components/BookingForm';
 import BookingSlots from '../components/BookingSlots';
 
-function BookingPage({ availableTimes, dispatchAvailableTimes }) {
+function BookingPage({ availableTimes, dispatchAvailableTimes, submitForm }) {
   return (
     <section className="page-section booking-page" aria-labelledby="booking-title">
       <div className="container booking-page-layout">
@@ -14,6 +14,7 @@ function BookingPage({ availableTimes, dispatchAvailableTimes }) {
           <BookingForm
             availableTimes={availableTimes}
             dispatchAvailableTimes={dispatchAvailableTimes}
+            submitForm={submitForm}
           />
         </div>
 

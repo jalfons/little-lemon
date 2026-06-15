@@ -605,3 +605,19 @@ address {
     grid-template-columns: 1fr;
   }
 }
+
+.confirmed-booking {
+  text-align: center;
+}
+
+.confirmed-booking .container {
+  max-width: 720px;
+}
+
+.confirmed-booking h1 {
+  color: var(--color-primary-green);
+}
+
+.confirmed-booking p {
+  margin: 0 auto 32px;
+}

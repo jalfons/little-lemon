@@ -1,6 +1,10 @@
 import { useEffect, useState } from 'react';
 
-function BookingForm({ availableTimes, dispatchAvailableTimes }) {
+function BookingForm({
+  availableTimes,
+  dispatchAvailableTimes,
+  submitForm = () => true,
+}) {
   const [date, setDate] = useState('');
   const [time, setTime] = useState(availableTimes[0] || '');
   const [guests, setGuests] = useState(1);
@@ -33,14 +37,16 @@ function BookingForm({ availableTimes, dispatchAvailableTimes }) {
       occasion,
     };
 
-    console.log('Reservation submitted:', reservationData);
+    const isSubmitted = submitForm(reservationData);
 
-    dispatchAvailableTimes({
-      type: 'reservation_submitted',
-      payload: reservationData,
-    });
-
-    alert('Reservation submitted. Check the browser console for the form data.');
+    if (isSubmitted) {
+      dispatchAvailableTimes({
+        type: 'reservation_submitted',
+        payload: reservationData,
+      });
+    } else {
+      alert('Unable to submit reservation. Please try again.');
+    }
   }
 
   return (
