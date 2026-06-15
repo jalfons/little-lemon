@@ -1,40 +1,23 @@
-function BookingPage() {
+import BookingForm from '../components/BookingForm';
+import BookingSlots from '../components/BookingSlots';
+
+function BookingPage({ availableTimes, dispatchAvailableTimes }) {
   return (
-    <section className="page-section" aria-labelledby="booking-title">
-      <div className="container">
-        <h1 id="booking-title">Reserve a Table</h1>
-        <p>
-          Book a table at Little Lemon. The full booking form will be added in
-          the next steps of the project.
-        </p>
+    <section className="page-section booking-page" aria-labelledby="booking-title">
+      <div className="container booking-page-layout">
+        <div>
+          <h1 id="booking-title">Reserve a Table</h1>
+          <p>
+            Complete the form below to reserve a table at Little Lemon.
+          </p>
 
-        <form className="booking-form">
-          <label htmlFor="booking-date">Choose date</label>
-          <input id="booking-date" type="date" />
+          <BookingForm
+            availableTimes={availableTimes}
+            dispatchAvailableTimes={dispatchAvailableTimes}
+          />
+        </div>
 
-          <label htmlFor="booking-time">Choose time</label>
-          <select id="booking-time">
-            <option>17:00</option>
-            <option>18:00</option>
-            <option>19:00</option>
-            <option>20:00</option>
-            <option>21:00</option>
-          </select>
-
-          <label htmlFor="guests">Number of guests</label>
-          <input id="guests" type="number" min="1" max="10" defaultValue="2" />
-
-          <label htmlFor="occasion">Occasion</label>
-          <select id="occasion">
-            <option>Birthday</option>
-            <option>Engagement</option>
-            <option>Anniversary</option>
-          </select>
-
-          <button type="submit" className="primary-button">
-            Make Your Reservation
-          </button>
-        </form>
+        <BookingSlots availableTimes={availableTimes} />
       </div>
     </section>
   );
