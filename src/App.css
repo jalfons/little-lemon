@@ -621,3 +621,23 @@ address {
 .confirmed-booking p {
   margin: 0 auto 32px;
 }
+
+.form-error {
+  color: #b00020;
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin: -8px 0 4px;
+}
+
+.booking-form input:invalid,
+.booking-form select:invalid {
+  border-color: #b00020;
+}
+
+.booking-form .booking-submit:disabled {
+  background-color: #cccccc;
+  color: #666666;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}

@@ -1,20 +1,43 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import {
+  getTodayDateString,
+  isBookingFormValid,
+  occasions,
+  validateBookingForm,
+} from '../utils/bookingValidation';
 
 function BookingForm({
   availableTimes,
   dispatchAvailableTimes,
   submitForm = () => true,
 }) {
+  const today = getTodayDateString();
+
   const [date, setDate] = useState('');
   const [time, setTime] = useState(availableTimes[0] || '');
   const [guests, setGuests] = useState(1);
   const [occasion, setOccasion] = useState('Birthday');
+  const [wasSubmitted, setWasSubmitted] = useState(false);
 
   useEffect(() => {
     if (availableTimes.length > 0 && !availableTimes.includes(time)) {
       setTime(availableTimes[0]);
     }
   }, [availableTimes, time]);
+
+  const formData = useMemo(
+    () => ({
+      date,
+      time,
+      guests,
+      occasion,
+      availableTimes,
+    }),
+    [availableTimes, date, guests, occasion, time]
+  );
+
+  const validation = validateBookingForm(formData);
+  const isFormValid = isBookingFormValid(formData);
 
   function handleDateChange(event) {
     const selectedDate = event.target.value;
@@ -29,6 +52,11 @@ function BookingForm({
 
   function handleSubmit(event) {
     event.preventDefault();
+    setWasSubmitted(true);
+
+    if (!isFormValid) {
+      return;
+    }
 
     const reservationData = {
       date,
@@ -56,15 +84,23 @@ function BookingForm({
         type="date"
         id="res-date"
         value={date}
+        min={today}
         onChange={handleDateChange}
+        aria-describedby="date-error"
         required
       />
+      {!validation.date && (wasSubmitted || date !== '') && (
+        <p className="form-error" id="date-error">
+          Please choose today or a future date.
+        </p>
+      )}
 
       <label htmlFor="res-time">Choose time</label>
       <select
         id="res-time"
         value={time}
         onChange={(event) => setTime(event.target.value)}
+        aria-describedby="time-error"
         required
       >
         {availableTimes.map((availableTime) => (
@@ -73,6 +109,11 @@ function BookingForm({
           </option>
         ))}
       </select>
+      {!validation.time && wasSubmitted && (
+        <p className="form-error" id="time-error">
+          Please choose an available reservation time.
+        </p>
+      )}
 
       <label htmlFor="guests">Number of guests</label>
       <input
@@ -83,8 +124,14 @@ function BookingForm({
         id="guests"
         value={guests}
         onChange={(event) => setGuests(event.target.value)}
+        aria-describedby="guests-error"
         required
       />
+      {!validation.guests && (wasSubmitted || guests !== '') && (
+        <p className="form-error" id="guests-error">
+          Please choose between 1 and 10 guests.
+        </p>
+      )}
 
       <label htmlFor="occasion">Occasion</label>
       <select
@@ -93,14 +140,19 @@ function BookingForm({
         onChange={(event) => setOccasion(event.target.value)}
         required
       >
-        <option value="Birthday">Birthday</option>
-        <option value="Anniversary">Anniversary</option>
+        {occasions.map((occasionOption) => (
+          <option key={occasionOption} value={occasionOption}>
+            {occasionOption}
+          </option>
+        ))}
       </select>
 
       <input
         type="submit"
         value="Make Your Reservation"
         className="primary-button booking-submit"
+        disabled={!isFormValid}
+        aria-disabled={!isFormValid}
       />
     </form>
   );
